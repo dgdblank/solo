@@ -8,8 +8,8 @@
     <title>Bill Splitting</title>
 
     <!-- Angular -->
-	<script src="bower_components/angular/angular.min.js"></script>
-	<script src="split.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script src="app.js"></script>
     
     <!-- Bootstrap Styling -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -19,35 +19,32 @@
 	  <div class="row" id="title">
 		<h1>Bill Splitting</h1>
 	  </div>
-		<div ng-app="splitting" ng-controller="splitCtrl">
+		<div ng-app="app" ng-controller="SplitCtrl">
+			<div class="row" id="inputs">
+				<div class="col-md-4">
+					<input ng-model="newPerson">
+					<button ng-click="addRoommate(newPerson)">Add Roommate</button>
+				</div>
 
-		<div class="row" id="inputs">
-			<div class="col-md-4" id="addPerson">
-				<input type='text'>
-				<button>Add Roommate</button>
+				<div class="col-md-8" id="inputPayment">
+					<div class="input-group">
+						<input type="text" class="form-control"placeholder="What did you pay for?">
+						<!-- Change to dropdown -->
+						<input type="text" class="form-control"
+						placeholder="Who paid?"> 
+						<input type="text" class="form-control"
+						placeholder="How much">
+						<button>Submit</button>
+					</div>	
+				</div>
 			</div>
 
-			<div class="col-md-8" id="inputPayment">
-				<div class="input-group">
-					<input type="text" class="form-control"placeholder="What did you pay for?">
-					<!-- Change to dropdown -->
-					<input type="text" class="form-control"
-					placeholder="Who paid?"> 
-					<input type="text" class="form-control"
-					placeholder="How much">
-					<button>Submit</button>
-				</div>	
+			<div class="people">Roommates
+				<ul>
+					<li ng-repeat="roommate in roommates">{{ roommate }}</li>
+				</ul>
 			</div>
 		</div>
-
-		<div class="roommates">Roommates
-			<ul>
-				<li> Person A </li>
-			</ul>
-		</div>
-			
-		</div>
-	</div>
 	   
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
