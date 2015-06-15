@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bill Splitting</title>
+
+    <!-- Angular -->
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="split.js"></script>
+    
+    <!-- Bootstrap Styling -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+  <div class="container">
+	  <div class="row" id="title">
+		<h1>Bill Splitting</h1>
+	  </div>
+		<div ng-app="splitting" ng-controller="splitCtrl">
+
+		<div class="row" id="inputs">
+			<div class="col-md-4" id="addPerson">
+				<input type='text'>
+				<button>Add Roommate</button>
+			</div>
+
+			<div class="col-md-8" id="inputPayment">
+				<span class="input-group">
+					<input type="text" class="form-control"placeholder="What did you pay for?">
+					<input><span class="btn-group">
+					  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+					    Payer <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" role="menu">
+					    <li>Person A</li>
+					  </ul>
+					</span></input>
+				</span>	
+			</div>
+		</div>
+
+		<div class="roommates">Roommates
+			<ul>
+				<li> Person A </li>
+			</ul>
+		</div>
+			
+		</div>
+	</div>
+	   
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

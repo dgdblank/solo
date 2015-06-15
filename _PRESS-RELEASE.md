@@ -18,27 +18,38 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  Roommate Bill Splitting
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  Simplifying bill splitting between you and your roommates. 
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  Apartments require numerous costs that add up quickly, and can be easily forgotten among your roommates. Keep track of the amount you're spending and make it easy to show the cost breakdowns to your roommates.  
 
 ## Problem ##
   > Describe the problem your product solves.
+ Keeping track of all the bills and which roommates have paid. 
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+ Bill Splitting allows the user to specify how much was spent on an item, who paid, and how much is owed. 
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  "Bill Splitting helps communicate bill breakdowns."
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  Step 1: Enter your roommates names
+  Step 2: Enter an item you paid for, how much, and select who should be splitting the costs.
+  Step 3: Watch Bill splitter calculate costs for you.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+ "Bill splitting takes the guess work out of splitting bills. I can avoid any contention showing my roommates a breakdown of our costs."
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+ Go to Bill Splitting and Get Started.
