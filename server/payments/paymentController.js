@@ -31,4 +31,8 @@ module.exports = {
 				next(error);
 			});
 	}
+
+	// userTotal: function (req, res, next){
+	// 	// returns all the payments made by user
+	// }
 };

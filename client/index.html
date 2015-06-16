@@ -5,16 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bill Splitting</title>
+    <title>BillSplitter</title>
     
     <!-- Bootstrap Styling -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
   </head>
   <body>
-  <div class="container title">
-	  <div class="row">
-		<h1>Bill Splitting</h1>
+  <div class="container">
+	  <div class="row page-header">
+		<h1>BillSplitter</h1>
 	  </div>
+  </div>
 		<div class="container" ng-app="app" ng-controller="SplitCtrl">
 			<div class="row" id="inputs">
 				<div class="col-md-4">
@@ -23,25 +25,32 @@
 				</div>
 
 				<div class="col-md-8" id="inputPayment">
-					<form ng-submit='makePayment()'>
-					<div class="input-group">
-						<input type="text" class="form-control"placeholder="What did you pay for?" ng-model='payment.item'>
-						<!-- Change to dropdown -->
-						<input type="text" class="form-control"
-						placeholder="Who paid?" ng-model='payment.payer'> 
-						<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder='0.00'ng-model="payment.total">
-						<button>Submit</button>
-					</div>	
-					</form>
+					<div class="people"><h2>Roommates</h2>
+						<ul>
+							<li ng-repeat="roommate in roommates track by $index" ng-click="showAmountOwed($index)">{{ roommate.name }}</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 			<div class="row" id="inputs">
 				<div class="col-md-4">
-					<div class="people">Roommates
-						<ul>
-							<li ng-repeat="roommate in roommates">{{ roommate.name }}</li>
-						</ul>
-					</div>
+					<form ng-submit='makePayment()'>
+					<div class="form-group">
+					Who Paid?
+						<input type="text" class="form-control" ng-model='payment.item' placeholder="Name" required>
+					What for?
+						<input type="text" class="form-control"placeholder="What did you pay for?" ng-model='payment.item' required>
+					How much?
+						<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder='0.00'ng-model="payment.total" required>
+					Split Between:
+						<br>
+						<label ng-repeat="roommate in roommates">{{ roommate.name }}
+							<input type='checkbox' value='{{ roommate.name}}'>
+						</label>
+						<br>
+						<button>Submit</button>
+					</div>	
+					</form>
 				</div>
 				<div class="col-md-8">
 					<table class="table">
@@ -63,6 +72,11 @@
 						</tbody>
 					</table>
 				</div>
+			</div>
+			<div class="row">
+				<ul>
+					<li ng-repeat
+				</ul>
 			</div>
 		</div>
 	   

@@ -9,7 +9,7 @@ var app = express();
 app.use(partials());
 app.use(bodyParser.json());
 app.use(express.static('../client'));
-mongoose.connect('mongodb://localhost/billSplitting');
+mongoose.connect('mongodb://localhost/test');
 
 // create multiple routers
 var paymentRouter = express.Router();
