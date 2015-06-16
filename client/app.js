@@ -12,19 +12,21 @@ app.controller('SplitCtrl', function ($scope, Services) {
 
 	$scope.addRoommate = function(person){
 		Services.addRoommate({name: person})
-			.then(function(){
-				$scope.getRoommates();
-			})
+		$scope.getRoommates();
 		$scope.newPerson = '';
 	};
 
 	
 	// Payments
-	var splitCosts = function(total){
+	var splitCosts = function(payer, total){
 		var cost = []
 		var numRoomies = $scope.roommates.length || 1;
 		for(var i = 0; i < numRoomies; i++){
-			cost.push(total/numRoomies);
+			if($scope.roommates[i].name === payer){
+				cost.push(0);
+			} else {
+				cost.push(total/numRoomies);
+			}
 		}
 
 		return cost;
@@ -38,17 +40,11 @@ app.controller('SplitCtrl', function ($scope, Services) {
 		total: null,
 		cost: null
 	};
-	// var cost = {
-	// 	split: null
-	// }
 
 
 	$scope.makePayment = function(){
-		$scope.payment.cost = splitCosts($scope.payment.total);
+		$scope.payment.cost = splitCosts($scope.payment.payer, $scope.payment.total);
 		Services.addPayment($scope.payment);
-		// Services.splitCost(cost);
-
-		// return to null
 		$scope.payment = {
 			item: null,
 			payer: null,
@@ -63,10 +59,6 @@ app.controller('SplitCtrl', function ($scope, Services) {
 			.then(function(data){
 				$scope.output = data;
 			})
-		// Services.getSplit()
-		// 	.then(function(costs){
-		// 		$scope.costs = costs;
-		// 	})
 	};
 
 $scope.getPayments();
@@ -110,30 +102,10 @@ app.service('Services', function ($http) {
 		});
 	};
 
-	// var splitCost = function(cost){
-	// 	return $http({
-	// 		method: 'POST',
-	// 		url: '/api/cost',
-	// 		data: cost
-	// 	});
-	// };
-
-	// var getSplit = function(){
-	// 	return $http({
-	// 		method: 'GET',
-	// 		url: '/api/cost'
-	// 	})
-	// 	.then(function (resp){
-	// 		return resp.data;
-	// 	});
-	// };
-
 	return {
 		addPayment: addPayment,
 		updateTable: updateTable,
 		addRoommate: addRoommate,
 		getRoommates: getRoommates
-		// splitCost: splitCost,
-		// getSplit: getSplit
 	};
 })
