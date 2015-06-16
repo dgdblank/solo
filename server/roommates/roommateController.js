@@ -1,8 +1,6 @@
-var fs = require('fs');
 var RM = require('./roommateModel.js');
 var Q = require('q');
 
-// var roommates = [];
 module.exports = {
 	addRoommate: function (req, res, next){
 		var roommate = req.body.name;
@@ -31,10 +29,5 @@ module.exports = {
 			.fail(function(error){
 				next(error);
 			});
-
-		// fs.readFile('./roommates/roommates.txt', 'utf8', function(err, data){
-		// 	if(err) console.log(err);
-		// 	res.send(data);
-		// });
 	}
 };
