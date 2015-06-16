@@ -1,21 +1,21 @@
-angular.module('app.factory', [])
+angular.module('app.services', [])
 
-.factory('Payments', function ($http) {
+.services('Payments', function ($http) {
 	var addPayment = function(){
 		return $http({
 			method: 'GET',
-			url: '/api/payment'
+			url: '/payment'
 		})
 		.then(function(resp){
 			return resp.data;
 		});
 	};
 
-	var updateTable = function(payment){
+	var updateTable = function(){
 		return $http({
 			method: 'POST',
-			url: '/api/payment'
-			data: payment
+			url: '/payment'
+			data: json
 		});
 	};
 

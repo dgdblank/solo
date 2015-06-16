@@ -34,8 +34,7 @@
 						<!-- Change to dropdown -->
 						<input type="text" class="form-control"
 						placeholder="Who paid?" ng-model='payment.payer'> 
-						<input type="text" class="form-control"
-						placeholder="How much" ng-model='payment.cost'>
+						<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder='0.00'ng-model="payment.cost">
 						<button>Submit</button>
 					</div>	
 					</form>
@@ -50,13 +49,21 @@
 					</div>
 				</div>
 				<div class="col-md-8">
-					<table ng-table="tableParams" class="table">
-						<tr ng-repeat="item in $data">
-							<td data-title="'Item'">{{ item.name }}</td>
-							<td data-title="'Cost'">{{ item.age }}</td>
-							<td data-title="'Payer'">{{ item.age }}</td>
-						<!-- 	<td ng-repeat="roommate in roommates" data-title={{ roommate }}></td> -->
-						</tr>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Item</th>
+								<th>Cost</th>
+								<th>Payer</th>
+							</tr>
+						<thead>
+						<tbody>
+							<tr ng-repeat="post in output">
+								<td>{{ post.item }}</td>
+								<td>{{ post.cost }}</td>
+								<td>{{ post.payer}}</td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 			</div>

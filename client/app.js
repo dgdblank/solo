@@ -1,7 +1,6 @@
-var app = angular.module('app', [
-	'ngTable'])
+var app = angular.module('app', [])
 
-app.controller('SplitCtrl', function ($scope, ngTableParams, Payments) {
+app.controller('SplitCtrl', function ($scope, Payments) {
 	$scope.roommates = [];
 
 	$scope.addRoommate = function(person){
@@ -10,34 +9,30 @@ app.controller('SplitCtrl', function ($scope, ngTableParams, Payments) {
 	};
 
 	$scope.payment = {
-		item: '',
-		payer: '',
-		cost: ''
+		item: null,
+		payer: null,
+		cost: null
 	};
 
 	$scope.makePayment = function(){
 		Payments.addPayment($scope.payment);
 		$scope.payment = {
-			item: '',
-			payer: '',
-			cost: ''
+			item: null,
+			payer: null,
+			cost: null
 		}
+		$scope.updateTable();
 	}
 
-	$scope.tableParams = new ngTableParams({
-		page: 1,
-		count: 10
-	}, {
-		getData: function($defer, params) {
-			$defer.resolve(data.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-		}
-	})
 	
-	var data = [{name: "Moroni", age: 50},
-                {name: "Tiancum", age: 43},
-                {name: "Jacob", age: 27},
-                {name: "Nephi", age: 29},
-                {name: "Enos", age: 35}];
+	$scope.updateTable = function(){
+		Payments.updateTable()
+			.then(function(data){
+				$scope.output = data;
+			})
+	};
+
+$scope.updateTable();
 });
 
 app.service('Payments', function ($http) {
@@ -46,7 +41,7 @@ app.service('Payments', function ($http) {
 			method: 'GET',
 			url: '/api/payment'
 		})
-		.then(function(resp){
+		.then(function (resp){
 			return resp.data;
 		});
 	};

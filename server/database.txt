@@ -1,1 +1,1 @@
-{"results":[{"item":"a","payer":"a","cost":"a"}]}
+[{"item":"hackreactor","payer":"danielle","cost":"17,000"},{"item":"food","payer":"danielle","cost":"15.00"}]
