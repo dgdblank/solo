@@ -1,6 +1,7 @@
 var express = require('express');
 var partials = require('express-partials');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 // var fs = require('fs');
 
 // initialize server and serve client files
@@ -8,6 +9,7 @@ var app = express();
 app.use(partials());
 app.use(bodyParser.json());
 app.use(express.static('../client'));
+mongoose.connect('mongodb://localhost/billSplitting');
 
 // create multiple routers
 var paymentRouter = express.Router();

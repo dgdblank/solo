@@ -1,4 +1,5 @@
 var fs = require('fs');
+var Payment = require('./paymentsModel.js');
 
 var items = [];
 module.exports = {
