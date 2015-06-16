@@ -6,11 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Bill Splitting</title>
-
-    <!-- Angular -->
-	<script src="bower_components/angular/angular.min.js"></script>
-	<script src="bower_components/ng-table/dist/ng-table.min.js"></script>
-	<script src="app.js"></script>
     
     <!-- Bootstrap Styling -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +29,7 @@
 						<!-- Change to dropdown -->
 						<input type="text" class="form-control"
 						placeholder="Who paid?" ng-model='payment.payer'> 
-						<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder='0.00'ng-model="payment.cost">
+						<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder='0.00'ng-model="payment.total">
 						<button>Submit</button>
 					</div>	
 					</form>
@@ -76,5 +71,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+     <!-- Angular -->
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="app.js"></script>
   </body>
 </html>

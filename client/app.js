@@ -2,6 +2,16 @@ var app = angular.module('app', [])
 
 app.controller('SplitCtrl', function ($scope, Services) {
 	$scope.cost;
+	$scope.roomates;
+
+	$scope.getRoommates = function(){
+		Services.getRoommates()
+			.then(function(roomies){
+				$scope.roommates = roomies;
+			})
+	}
+
+	$scope.roommates = $scope.getRoommates();
 
 	$scope.addRoommate = function(person){
 		Services.addRoommate({name: person})
@@ -11,16 +21,10 @@ app.controller('SplitCtrl', function ($scope, Services) {
 		$scope.newPerson = '';
 	};
 
-	var applyRemoteRoomies = function(roomies){
-		$scope.roommates = roomies;
-	}
+	// var applyRemoteRoomies = function(roomies){
+	// 	$scope.roommates = roomies;
+	// }
 
-	$scope.getRoommates = function(){
-		Services.getRoommates()
-			.then(function(roomies){
-				applyRemoteRoomies(roomies);
-			})
-	}
 
 	// var splitCosts = function(total){
 	// 	var cost = []
@@ -60,7 +64,6 @@ app.controller('SplitCtrl', function ($scope, Services) {
 	};
 
 $scope.updateTable();
-$scope.getRoommates();
 });
 
 app.service('Services', function ($http) {
