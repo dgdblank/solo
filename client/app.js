@@ -1,8 +1,6 @@
 var app = angular.module('app', [])
 
 app.controller('SplitCtrl', function ($scope, Services) {
-	$scope.roommates;
-
 
 	// Roommates
 	$scope.getRoommates = function(){
@@ -38,16 +36,17 @@ app.controller('SplitCtrl', function ($scope, Services) {
 		item: null,
 		payer: null,
 		total: null,
+		cost: null
 	};
-	var cost = {
-		split: null
-	}
+	// var cost = {
+	// 	split: null
+	// }
 
 
 	$scope.makePayment = function(){
-		cost.split = splitCosts($scope.payment.total);
+		$scope.payment.cost = splitCosts($scope.payment.total);
 		Services.addPayment($scope.payment);
-		Services.splitCost(cost);
+		// Services.splitCost(cost);
 
 		// return to null
 		$scope.payment = {
@@ -64,10 +63,10 @@ app.controller('SplitCtrl', function ($scope, Services) {
 			.then(function(data){
 				$scope.output = data;
 			})
-		Services.getSplit()
-			.then(function(costs){
-				$scope.costs = costs;
-			})
+		// Services.getSplit()
+		// 	.then(function(costs){
+		// 		$scope.costs = costs;
+		// 	})
 	};
 
 $scope.getPayments();
@@ -111,30 +110,30 @@ app.service('Services', function ($http) {
 		});
 	};
 
-	var splitCost = function(cost){
-		return $http({
-			method: 'POST',
-			url: '/api/cost',
-			data: cost
-		});
-	};
+	// var splitCost = function(cost){
+	// 	return $http({
+	// 		method: 'POST',
+	// 		url: '/api/cost',
+	// 		data: cost
+	// 	});
+	// };
 
-	var getSplit = function(){
-		return $http({
-			method: 'GET',
-			url: '/api/cost'
-		})
-		.then(function (resp){
-			return resp.data;
-		});
-	};
+	// var getSplit = function(){
+	// 	return $http({
+	// 		method: 'GET',
+	// 		url: '/api/cost'
+	// 	})
+	// 	.then(function (resp){
+	// 		return resp.data;
+	// 	});
+	// };
 
 	return {
 		addPayment: addPayment,
 		updateTable: updateTable,
 		addRoommate: addRoommate,
-		getRoommates: getRoommates,
-		splitCost: splitCost,
-		getSplit: getSplit
+		getRoommates: getRoommates
+		// splitCost: splitCost,
+		// getSplit: getSplit
 	};
 })

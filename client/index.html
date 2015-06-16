@@ -58,7 +58,7 @@
 								<td>{{ post.item }}</td>
 								<td>{{ post.total }}</td>
 								<td>{{ post.payer}}</td>
-								<td ng-repeat='cost in costs'>{{ cost }}</td>
+								<td ng-repeat='cost in post.cost track by $index'>{{ cost }}</td>
 							</tr>
 						</tbody>
 					</table>
