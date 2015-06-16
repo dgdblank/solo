@@ -8,12 +8,13 @@ app.controller('SplitCtrl', function ($scope, Payments) {
 		$scope.newPerson = '';
 	};
 
+	
+	// Adds payment to database
 	$scope.payment = {
 		item: null,
 		payer: null,
 		cost: null
 	};
-
 	$scope.makePayment = function(){
 		Payments.addPayment($scope.payment);
 		$scope.payment = {
@@ -24,7 +25,7 @@ app.controller('SplitCtrl', function ($scope, Payments) {
 		$scope.updateTable();
 	}
 
-	
+	// gets data from database and populates payment table
 	$scope.updateTable = function(){
 		Payments.updateTable()
 			.then(function(data){
