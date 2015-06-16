@@ -1,17 +1,16 @@
 var app = angular.module('app', [])
 
 app.controller('SplitCtrl', function ($scope, Services) {
-	$scope.cost;
-	$scope.roomates;
+	$scope.roommates;
 
+
+	// Roommates
 	$scope.getRoommates = function(){
 		Services.getRoommates()
 			.then(function(roomies){
 				$scope.roommates = roomies;
 			})
 	}
-
-	$scope.roommates = $scope.getRoommates();
 
 	$scope.addRoommate = function(person){
 		Services.addRoommate({name: person})
@@ -21,20 +20,17 @@ app.controller('SplitCtrl', function ($scope, Services) {
 		$scope.newPerson = '';
 	};
 
-	// var applyRemoteRoomies = function(roomies){
-	// 	$scope.roommates = roomies;
-	// }
+	
+	// Payments
+	var splitCosts = function(total){
+		var cost = []
+		var numRoomies = $scope.roommates.length || 1;
+		for(var i = 0; i < numRoomies; i++){
+			cost.push(total/numRoomies);
+		}
 
-
-	// var splitCosts = function(total){
-	// 	var cost = []
-	// 	var numRoomies = $scope.roomates.length || null;
-	// 	for(var i = 0; i < numRoomies; i++){
-	// 		cost.push(total/numRoomies);
-	// 	}
-
-	// 	return cost;
-	// }
+		return cost;
+	}
 
 	
 	// Adds payment to database
@@ -43,27 +39,39 @@ app.controller('SplitCtrl', function ($scope, Services) {
 		payer: null,
 		total: null,
 	};
+	var cost = {
+		split: null
+	}
+
 
 	$scope.makePayment = function(){
-		// $scope.payment.cost = splitCosts($scope.payment.total);
+		cost.split = splitCosts($scope.payment.total);
 		Services.addPayment($scope.payment);
+		Services.splitCost(cost);
+
+		// return to null
 		$scope.payment = {
 			item: null,
 			payer: null,
 			total: null,
 		}
-		$scope.updateTable();
+		$scope.getPayments();
 	}
 
 	// gets data from database and populates payment table
-	$scope.updateTable = function(){
+	$scope.getPayments = function(){
 		Services.updateTable()
 			.then(function(data){
 				$scope.output = data;
 			})
+		Services.getSplit()
+			.then(function(costs){
+				$scope.costs = costs;
+			})
 	};
 
-$scope.updateTable();
+$scope.getPayments();
+$scope.getRoommates();
 });
 
 app.service('Services', function ($http) {
@@ -103,11 +111,30 @@ app.service('Services', function ($http) {
 		});
 	};
 
+	var splitCost = function(cost){
+		return $http({
+			method: 'POST',
+			url: '/api/cost',
+			data: cost
+		});
+	};
+
+	var getSplit = function(){
+		return $http({
+			method: 'GET',
+			url: '/api/cost'
+		})
+		.then(function (resp){
+			return resp.data;
+		});
+	};
+
 	return {
 		addPayment: addPayment,
 		updateTable: updateTable,
 		addRoommate: addRoommate,
-		getRoommates: getRoommates
-
+		getRoommates: getRoommates,
+		splitCost: splitCost,
+		getSplit: getSplit
 	};
 })

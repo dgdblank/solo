@@ -6,7 +6,7 @@ module.exports = {
 		roommates.push(req.body);
 		fs.writeFile('./roommates/roommates.txt', JSON.stringify(roommates), function(err){
 			if(err) console.log(err);
-			console.log('database written');
+			console.log('roommate written');
 		})
 	},
 
