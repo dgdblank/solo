@@ -1,0 +1,13 @@
+{
+  "name": "bill-splitting",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.13.0",
+    "express": "^4.12.4",
+    "express-partials": "^0.3.0"
+  }
+}
