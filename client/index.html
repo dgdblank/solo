@@ -28,15 +28,17 @@
 				</div>
 
 				<div class="col-md-8" id="inputPayment">
+					<form ng-submit='makePayment()'>
 					<div class="input-group">
-						<input type="text" class="form-control"placeholder="What did you pay for?">
+						<input type="text" class="form-control"placeholder="What did you pay for?" ng-model='payment.item'>
 						<!-- Change to dropdown -->
 						<input type="text" class="form-control"
-						placeholder="Who paid?"> 
+						placeholder="Who paid?" ng-model='payment.payer'> 
 						<input type="text" class="form-control"
-						placeholder="How much">
+						placeholder="How much" ng-model='payment.cost'>
 						<button>Submit</button>
 					</div>	
+					</form>
 				</div>
 			</div>
 			<div class="row" id="inputs">
