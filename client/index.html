@@ -44,7 +44,7 @@
 				<div class="col-md-4">
 					<div class="people">Roommates
 						<ul>
-							<li ng-repeat="roommate in roommates">{{ roommate }}</li>
+							<li ng-repeat="roommate in roommates">{{ roommate.name }}</li>
 						</ul>
 					</div>
 				</div>
@@ -55,14 +55,15 @@
 								<th>Item</th>
 								<th>Cost</th>
 								<th>Payer</th>
-								<th ng-repeat='roommate in roommates'>{{ roommate }}</th>
+								<th ng-repeat='roommate in roommates'>{{ roommate.name }}</th>
 							</tr>
 						<thead>
 						<tbody>
 							<tr ng-repeat="post in output">
 								<td>{{ post.item }}</td>
-								<td>{{ post.cost }}</td>
+								<td>{{ post.total }}</td>
 								<td>{{ post.payer}}</td>
+							<!-- 	<td ng-repeat='cost in output.cost'>{{ cost }}</td> -->
 							</tr>
 						</tbody>
 					</table>

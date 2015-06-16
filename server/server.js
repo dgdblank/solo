@@ -9,12 +9,16 @@ app.use(partials());
 app.use(bodyParser.json());
 app.use(express.static('../client'));
 
-// use payment router for payment requests
+// create multiple routers
 var paymentRouter = express.Router();
-app.use('/api/payment', paymentRouter);
+var roommateRouter = express.Router();
 
-// inject router into payment route
+app.use('/api/payment', paymentRouter);
+app.use('/api/roommate', roommateRouter);
+
+// inject routers into routes
 require('./payments/paymentRoute.js')(paymentRouter);
+require('./roommates/roommateRoute.js')(roommateRouter);
 
 
 console.log('bill-splitting is listening on 3000');

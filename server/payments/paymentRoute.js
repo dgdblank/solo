@@ -5,5 +5,4 @@ module.exports = function (app) {
 app.route('/')
 	.post(paymentController.addPayment)
 	.get(paymentController.updateTable);
-
 };
