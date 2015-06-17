@@ -28,7 +28,7 @@
 					<div class="people"><h2>Roommates</h2>
 						<ul>
 							<li ng-repeat="roommate in roommates track by $index" ng-click="showAmountOwed($index)">{{ roommate.name }}</li>
-						</ul>
+						</ul>	
 					</div>
 				</div>
 			</div>
@@ -37,7 +37,7 @@
 					<form ng-submit='makePayment()'>
 					<div class="form-group">
 					Who Paid?
-						<input type="text" class="form-control" ng-model='payment.item' placeholder="Name" required>
+						<input type="text" class="form-control" ng-model='payment.payer' placeholder="Name" required>
 					What for?
 						<input type="text" class="form-control"placeholder="What did you pay for?" ng-model='payment.item' required>
 					How much?
